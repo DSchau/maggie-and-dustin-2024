@@ -1,0 +1,40 @@
+- title: Head of API Client
+  location: San Francisco, CA
+  employer: Postman
+  logo: ./logos/postman.svg
+  date: "2023-Present"
+  description: I lead the team that owns the central engine of the Postman product in the API Client. The API Client team is responsible for maintaining and improving the core functionality of enabling developers to send, debug, and test requests across multiple protocols (REST, gRPC, Websockets, GraphQL, and MQTT). Postman is a Series D startup that has over 6M monthly users and over 100M in revenue.
+- title: Senior Director, Engineering
+  location: Fully remote
+  employer: Netlify
+  date: "2023"
+  description: I helped integrate the Gatsby team into the Netlify organization as part of the acquisition. Additionally, I helped launch the general availability launch of Netlify Connect, which was the primary reason that Gatsby was acquired.
+  highlights:
+    - Launched Netlify Connect, the graduation and general availability launch of Valhalla (created at Gatsby, Inc.)
+    - Integrated the Gatsby team into Netlify, and contributed to consolidation of Gatsby Cloud into Netlify
+- title: Co-founder, VP of Product & Engineering
+  location: Fully remote
+  employer: Gatsby
+  date: "2018-2023"
+  description: "I joined Gatsby in 2018 as employee #11 as an engineer on the open-source team. I eventually ended up leading a team of 25+ containing all of Product, Engineering, and Design and we grew our revenue from 40K to over 5M and were successfully acquired by Netlify in 2023. I received an honorary co-founder title to celebrate my impact on Gatsby's success."
+  highlights:
+    - Created the SaaS product Gatsby Cloud which grew customer base from zero to over 1K+ paid customers (100 enterprise!) and over 5M ARR
+    - Shipped four major releases of the Gatsby open-source web framework, culminating in one of the most popular open-source projects of all time that as of 2023 powers 0.3% of the web
+    - Co-created Valhalla (along with Abhi Aiyer, Ward Peeters, and Shane Thomas), which was Gatsby's GraphQL data layer made framework agnostic and was the central product that led to Gatsby's acquisition by Netlify
+- title: Principal Consultant
+  location: Omaha, NE
+  employer: Object Partners
+  date: "2016-2018"
+  description: Built some fun projects for some amazing companies. Helped enterprises modernize their web stack, and embrace modern technologies like React and Node.js.
+  highlights:
+    - Built an Ionic hybrid mobile application for truck drivers used by over 10K weekly users
+    - Built a real-time chat platform backed by Firebase and web components (Polymer).
+    - Modernized frontend platform for 1000+ person company and standardized on React and Redux
+- title: Senior Application Developer
+  location: Omaha, NE
+  employer: Union Pacific
+  date: "2013-2016"
+  description: Started my career as a frontend focused application developer, ended up building a component library and application generator.
+  highlights:
+    - Built a standardized frontend toolkit and application generator for internal Angular.js applications
+    - Contributed and maintained dozens of Angular.js components, used by millions of users and thousands of internal developers

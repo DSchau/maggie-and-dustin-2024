@@ -1,0 +1,39 @@
+.header {
+  padding: var(--padding-md) var(--padding-lg);
+}
+
+.title {
+  display: inline-block;
+}
+
+.byline {
+  padding: 0;
+  margin: 0;
+}
+
+.header > p > a {
+  color: var(--text-color);
+}
+
+.logo {
+  display: inline-block;
+  vertical-align: middle;
+  height: var(--h2-size);
+  width: var(--h2-size);
+
+  position: relative;
+  top: -2px; /* visual center */
+}
+
+.frequency {
+  color: var(--text-accent-color);
+}
+
+.employer {
+  text-decoration: none;
+  color: var(--postman-color);
+}
+
+.employer:hover {
+  text-decoration: underline;
+}

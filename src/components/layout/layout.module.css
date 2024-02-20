@@ -1,0 +1,26 @@
+:root {
+  --main-padding: 0 var(--padding-lg);
+  --main-width: min(100ch, 100%);
+}
+
+.container {
+  display: grid;
+  grid-template-columns:
+    1fr
+    min(65ch, 100%)
+    1fr;
+
+  padding: var(--main-padding);
+  margin: 0 auto;
+}
+
+.container > * {
+  grid-column: 2;
+}
+
+.container main {
+  grid-column: 1 / -1;
+  width: var(--main-width);
+
+  margin: 0 auto;
+}

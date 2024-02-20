@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+
+import Me from '@/components/me/me.astro';
+
+import '@/styles/globals.css'
+import styles from './blog-post.module.css'
+
+interface Props {
+  className?: string;
+  frontmatter: CollectionEntry<'posts'>['data'] & {
+    lastModified: string
+  }
+}
+
+const { frontmatter } = Astro.props;
+
+const formatDate = (date: string | Date) => new Date(date).toLocaleDateString('en-us', {timeZone: 'UTC'})
+const shouldDisplayEdited = new Date(frontmatter.lastModified).getTime() > new Date(frontmatter.date).getTime()
+---
+
+<article class={styles.container}>
+  <p class={styles.date}>
+    {formatDate(frontmatter.date)}
+    {shouldDisplayEdited && <span class={styles.modified}>Last edited: {formatDate(frontmatter.lastModified)}</span>}
+  </p>
+  <h1 class={styles.title}>{frontmatter.title}</h1>
+  <Me />
+  {frontmatter.featuredImage && (
+    <Image src={frontmatter.featuredImage} class={[styles.full, styles.hero].join(' ')} alt={"A prefiw for a blog post"} />
+  )}
+  <slot />
+</article>
+

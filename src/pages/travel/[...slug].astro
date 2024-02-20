@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@/layouts/Layout.astro'
+
+import MarkdownPostLayout from '@/layouts/BlogPost.astro';
+
+export async function getStaticPaths() {
+  const tripEntries = await getCollection('trips');
+  return tripEntries.map(entry => ({
+    params: { slug: entry.slug }, props: { entry },
+  }));
+}
+
+const site = Astro.site
+
+const { entry } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await entry.render();
+
+---
+
+<style>
+  :root {
+    --main-padding: 0;
+    --main-width: 100%;
+  }
+
+</style>
+
+<Layout title={`Blog | ${entry.data.title}`} description={entry.data.excerpt} showHeader={false} meta={[
+  {
+    name: 'twitter:card',
+    content: 'summary_large_image'
+  },
+  {
+    property: 'twitter:domain',
+    content: site?.hostname.replace('www.', '')
+  },
+  {
+    property: 'twitter:url',
+    content: `${site?.href}posts/${entry.slug}`
+  },
+  {
+    property: 'og:image',
+    content: `${site?.href}api/og.png?type=post&title=${encodeURIComponent(entry.data.title)}&tags=${entry.data.tags.join(',')}`
+  },
+  {
+    property: 'og:image:width',
+    content: `1200`
+  },
+  {
+    property: 'og:image:height',
+    content: `630`
+  }
+]}>
+  <MarkdownPostLayout frontmatter={Object.assign({}, remarkPluginFrontmatter, entry.data) as any}>
+    <Content />
+  </MarkdownPostLayout>
+</Layout>
+
+

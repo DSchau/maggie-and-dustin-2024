@@ -1,0 +1,64 @@
+.row {
+  display: flex;
+}
+
+.container {
+  margin: 0 auto;
+
+  width: var(--content-width);
+  padding: var(--padding-md) var(--padding-lg);
+}
+
+.container input, .container textarea {
+  display: inline-block;
+  width: 100%;
+
+  padding: var(--padding-md) var(--padding-lg);
+  margin: var(--padding-s);
+}
+
+input:focus, textarea:focus {
+  outline: 1px solid var(--button-color);
+}
+
+input[name="name"] {
+  max-width: 40%;
+}
+
+input[name="lastName"] {
+  display: none;
+}
+
+
+.message {
+  min-height: 150px;
+}
+
+.button {
+  background-color: var(--button-color);
+  border: 1px solid var(--button-border-color);
+  color: var(--bg-color);
+  width: min(45ch, 100%);
+  margin: var(--padding-lg) auto;
+  padding: var(--padding-md) var(--padding-lg);
+  
+  transition: var(--ease-fn) 1s;
+}
+
+.button[data-state="SUCCESS"] {
+  background-color: green;
+}
+
+.button[data-state="FAILED"] {
+  background-color: red;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: var(--button-border-color);
+}
+
+.button[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

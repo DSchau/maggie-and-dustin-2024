@@ -1,0 +1,21 @@
+.tags {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tags[data-size="small"] .tag {
+  padding: var(--padding-xs);
+  margin: var(--padding-xs);
+
+  opacity: 0.75;
+}
+
+.tag {
+  display: inline-block;
+  font-size: var(--text-xs);
+
+  padding: var(--padding-s) var(--padding-md);
+  margin: var(--padding-s);
+  border: 1px solid var(--text-accent-color);
+}

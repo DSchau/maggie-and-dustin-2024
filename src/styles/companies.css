@@ -1,0 +1,27 @@
+:root {
+  --postman-color: rgb(255, 108, 55);
+  --netlify-color: rgb(1, 72, 71);
+  --gatsby-color: rebeccapurple;
+  --opi-color: #d22630;
+  --up-color: rgb(0, 82, 155);
+}
+
+.postman {
+  color: var(--postman-color);
+}
+
+.netlify {
+  color: var(--netlify-color);
+}
+
+.gatsby {
+  color: var(--gatsby-color);
+}
+
+.object-partners {
+  color: var(--opi-color);
+}
+
+.union-pacific {
+  color: var(--up-color);
+}

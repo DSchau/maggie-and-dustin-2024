@@ -1,0 +1,78 @@
+---
+import { getCollection } from "astro:content";
+import Layout from '@/layouts/Layout.astro'
+import ExternalLink from 'phosphor-react/src/icons/ArrowSquareOut.tsx'
+
+import { Tags } from '@/components/tags/tags.tsx';
+
+const trips = await getCollection('trips', ({ data }) => {
+  return import.meta.env.PROD ? data.draft !== true : true;
+})
+  .then(all => {
+    return all.sort((a, b) => {
+      return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+    })
+  })
+---
+<style>
+  p {
+    font-size: var(--text-s);
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  .container {
+    margin: 0 auto;
+    max-width: var(--content-width);
+
+    padding: 0 var(--padding-lg);
+  }
+
+  ol {
+    margin: 0;
+    padding: 0 var(--padding-md);
+  }
+
+  li {
+    padding: var(--padding-s) 0;
+    list-style-type: decimal-leading-zero;
+  }
+
+  .date {
+    font-size: 0.8rem;
+    float: right;
+    color: var(--text-color);
+  }
+
+  a > .icon {
+    display: inline-block;
+    position: relative;
+    top: 3px;
+
+    margin-right: var(--padding-s);
+  }
+
+</style>
+
+<Layout title="All posts">
+  <div class="container">
+    <h2>{trips.length} Post{trips.length > 1 ? 's' : ''}</h2>
+    <ol reversed>
+      {trips.map(trip => {
+        const href = trip.data.canonicalLink ? trip.data.canonicalLink : `/travel/${trip.slug}`
+        const external = /https?/.test(href)
+        return (
+          <li>
+            <a href={href} {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}>{external ? <ExternalLink className="icon" />: null}{trip.data.title} <span class="date">{new Date(trip.data.date).toLocaleDateString('en-us', {timeZone: 'UTC'})}</span></a>
+            <Tags small={true} list={
+              trip.data.tags.map(tag => ({ label: tag }))
+            } />
+            <p>{trip.data.excerpt}</p>
+          </li>
+        )
+      })}
+    </ol>
+  </div>
+</Layout>

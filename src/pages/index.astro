@@ -1,0 +1,89 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from '@unpic/astro';
+
+import Layout from "@/layouts/Layout.astro";
+
+import { Collection } from '@/components/collection/collection.tsx';
+import { Project } from '@/components/project/project.tsx';
+import { ContactForm } from '@/components/contact-form/contact-form.tsx'
+
+
+const POST_LIMIT = 3
+
+const trips = await getCollection('trips', ({ data }) => {
+	const canShow = import.meta.env.PROD ? data.draft !== true : true;
+	return canShow && data.featured
+})
+	.then(all => {
+		return all
+			.sort((a, b) => {
+				return new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+			})
+			.slice(0, POST_LIMIT)
+	})
+---
+<style>
+	h3 {
+		text-align: center;
+		padding: var(--padding-md) 0;
+
+		margin: var(--padding-s) auto;
+		max-width: var(--content-width);
+		border-top: 1px solid var(--border-color);
+	}
+
+	section {
+		padding: var(--padding-lg) 0;
+	}
+
+	section > p {
+		margin: 0 auto;
+		width: var(--content-width);
+
+		padding: var(--padding-md) var(--padding-lg);
+	}
+
+	.images {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+
+	.images > .image {
+		padding: var(--padding-s);
+	}
+
+	.images img {
+		max-height: 450px;
+		height: 100%;
+		border-radius: var(--padding-lg);
+	}
+
+	@media only screen and (min-width: 768px) {
+		.images {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+</style>
+
+<Layout title="Product & Engineering Leader">
+	<section>
+		<div class="images">
+			<div class="image"><Image src="https://dschau-website.imgix.net/noah-working.jpeg" alt="My son Noah and I working in my office" layout="fullWidth" height={450} background="#000" priority={true} /></div>
+			<div class="image"><Image src="https://dschau-website.imgix.net/maggie.jpeg" alt="My wife Maggie and I at Yosemite" layout="fullWidth" height={450} background="auto" priority={true} /></div>
+			<div class="image"><Image src="https://dschau-website.imgix.net/noah.jpeg" alt="My wife Maggie using her iPhone with Noah" layout="fullWidth" height={450} background="auto" /></div>
+			<div class="image"><Image src="https://dschau-website.imgix.net/gatsby.jpeg" alt="My time at Gatsby" layout="fullWidth" height={450} background="auto"/></div>
+		</div>
+	</section>
+	<section>
+		<h3>recent trips</h3>
+		<p>I try to blog about topics that interest me. Maybe they interest you! Some recent ones are below.</p>
+		<Collection items={trips} />
+	</section>
+	<section>
+		<h3>contact me</h3>
+		<p>If you'd like to chat, please do reach out. You can <a href="mailto:me@dustinschau.com">e-mail me</a> or you can use the form below.</p>
+		<ContactForm client:load />
+	</section>
+</Layout>

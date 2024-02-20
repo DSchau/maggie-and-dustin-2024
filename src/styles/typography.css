@@ -1,0 +1,71 @@
+p {
+  line-height: 1.75;
+  font-size: 1rem;
+  text-wrap: pretty;
+
+  margin-top: var(--padding-md);
+  margin-bottom: var(--padding-md);
+}
+
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: 2.125rem;
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+h3 {
+  font-size: 1.3rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+}
+
+h4 {
+  margin-top: 1.4rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+code {
+  font-size: 0.8rem;
+}
+
+h2 code {
+  font-size: 0.9rem;
+}
+
+h3 code {
+  font-size: 0.8rem;
+}
+
+ol, ul {
+  margin-top: 1.15rem;
+  margin-bottom: 1.15rem;
+
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+ol > li, ul > li {
+  padding-left: 0.4rem;
+}
+
+blockquote {
+  font-style: italic;
+}

@@ -1,0 +1,40 @@
+---
+import { Layout as LayoutComponent } from "@/components/layout/layout";
+import { getMostRecentCommit } from "@/lib/get-most-recent-commit";
+import metayaml from '@/assets/meta.yaml'
+
+const pathname = new URL(Astro.request.url).pathname.slice(1)
+
+const { title, description, showHeader, showCopy, meta = []} = Astro.props
+
+const fullTitle = `${metayaml.title}${title ? ` | ${title}` : ''}`
+const fullDescription = description ? description : metayaml.description
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		{pathname === '' && <link rel="preconnect" href="https://dschau-website.imgix.net" />}
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={fullDescription} />
+		<meta property="og:description" content={fullDescription} />
+		<meta name="twitter:description" content={fullDescription} />
+		<meta name="keywords" content={metayaml.keywords} />
+		<meta property="og:title" content={fullTitle} />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta property="og:type" content="website" />
+		{
+			meta.map(({ property, name, content }: any) => {
+				return <meta property={property} name={name} content={content} />
+			})
+		}
+		<title>{fullTitle}</title>
+	</head>
+	<body>
+    <LayoutComponent pathname={pathname} showHeader={showHeader} showCopy={showCopy}>
+      <slot />
+    </LayoutComponent>
+	</body>
+</html>

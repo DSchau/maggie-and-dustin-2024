@@ -1,0 +1,88 @@
+.project {
+  margin: var(--padding-s);
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid transparent;
+  width: 100%;
+}
+
+.content {
+  flex-grow: 1;
+  padding-bottom: var(--padding-lg);
+
+  font-size: var(--text-md);
+  padding: var(--padding-lg);
+
+  border: 1px solid var(--border-color);
+  border-bottom-width: 0;
+  border-top-width: 0;
+}
+
+.header, .footer {
+  padding: var(--padding-md) var(--padding-lg);
+}
+
+.header {
+  text-align: center;
+
+  background-color: #333;
+  color: var(--bg-color);
+
+  border: 1px solid #222;
+  margin-bottom: 0;
+}
+
+.header a {
+  color: var(--bg-color);
+}
+
+.description {
+  margin: 0;
+  padding: 0;
+}
+
+.footer {
+  color: var(--text-color);
+  text-align: center;
+
+  background-color: #fafbfc;
+
+  border: 1px solid #e1e4e8;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer > span {
+  padding: 0 var(--padding-md);
+
+  font-size: var(--text-s);
+}
+
+.footer svg {
+  display: inline-block;
+
+  position: relative;
+  top: 2px;
+}
+
+.footer a {
+  color: var(--text-color);
+  text-decoration: none;
+
+  font-size: var(--text-s);
+}
+
+.date {
+  text-align: center;
+  font-size: var(--text-s);
+  font-weight: normal;
+  font-family: var(--body-font);
+  padding: 0 var(--padding-s);
+  margin: 0;
+
+  color: var(--border-color);
+}

@@ -1,0 +1,35 @@
+.footer {
+  padding: var(--padding-lg);
+
+  text-align: center;
+  width: 100%;
+
+  border-top: 1px solid var(--border-color);
+  margin-top: var(--padding-lg);
+}
+
+.footer p {
+  text-align: center;
+}
+
+.copyright {
+  margin: 0;
+  padding: 0;
+}
+
+.footer p > svg {
+  display: inline-block;
+
+  position: relative;
+  top: 2px;
+}
+
+.footer a:hover {
+  text-decoration: none;
+}
+
+.version {
+  font-size: 0.6rem;
+  margin: 0;
+  padding: 0;
+}

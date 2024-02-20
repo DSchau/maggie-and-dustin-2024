@@ -1,0 +1,5 @@
+- name: home
+  to: /
+- name: trips
+  to: /travel
+

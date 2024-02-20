@@ -1,0 +1,38 @@
+:root {
+  --text-color: #222;
+  --text-accent-color: #444;
+  --bg-color: #fefefe;
+  --border-color: #ddd;
+
+  --button-color: #002D62;
+  --button-border-color: #002046;
+
+  --header-font: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif;
+  --body-font: system-ui, sans-serif;
+
+  --h1-size: 2rem;
+  --h2-size: 1.5rem;
+  --h3-size: 1.3rem;
+  --h4-size: 1.2rem;
+  --h5-size: 1.1rem;
+  --h6-size: 1rem;
+
+  --breakpoint-sm: 0px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+
+  --padding-xs: 0.125rem;
+  --padding-s: 0.25rem;
+  --padding-md: 0.5rem;
+  --padding-lg: 1rem;
+  --padding-xl: 1.5rem;
+
+  --text-xs: 0.7rem;
+  --text-s: 0.8rem;
+  --text-md: 0.9rem;
+  --text-lg: 1.2rem;
+
+  --content-width: min(65ch, 100%);
+
+  --ease-fn: cubic-bezier(0.075, 0.82, 0.165, 1);
+}

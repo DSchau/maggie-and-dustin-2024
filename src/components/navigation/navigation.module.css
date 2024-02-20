@@ -1,0 +1,54 @@
+.navigation {
+  padding: var(--padding-s) var(--padding-lg);
+
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 9001; /* it's over 9000 */
+}
+
+.navigation ul {
+  margin: 0;
+  padding: 0;
+}
+
+.navigation li {
+  list-style-type: none;
+
+  display: inline-block;
+  padding: var(--padding-s) var(--padding-lg);
+}
+
+@media only screen and (min-width: 1024px) {
+  .navigation {
+    position: static;
+  }
+
+  .navigation li {
+    padding: var(--padding-lg) var(--padding-md);
+  }
+}
+
+.navigation li:first-child {
+  padding-left: 0;
+}
+
+.navigation a {
+  color: var(--text-color);
+  text-decoration-skip: ink;
+
+  transition: var(--ease-fn) 1s;
+}
+
+.navigation a:hover {
+  text-decoration: none;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.active a {
+  text-decoration: none;
+}
