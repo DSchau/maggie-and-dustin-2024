@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'static',
+  output: 'hybrid',
   site: 'https://www.maggieanddustin.com',
   integrations: [react(), sitemap()],
   adapter: cloudflare(),
