@@ -4,7 +4,9 @@
       "Bash(mkdir:*)",
       "Bash(npm install:*)",
       "Bash(npx tsc:*)",
-      "Bash(npx astro:*)"
+      "Bash(npx astro:*)",
+      "Bash(mv /Users/dustinschau/Projects/Personal/maggie-and-dustin-2024/src/content/images/*.jpeg /Users/dustinschau/Projects/Personal/maggie-and-dustin-2024/src/assets/images/)",
+      "Bash(mv /Users/dustinschau/Projects/Personal/maggie-and-dustin-2024/src/content/images/*.heic /Users/dustinschau/Projects/Personal/maggie-and-dustin-2024/src/assets/images/)"
     ]
   }
 }

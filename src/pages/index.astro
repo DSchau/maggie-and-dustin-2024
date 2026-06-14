@@ -4,22 +4,25 @@ import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import PostCard from "@/components/PostCard.astro";
 
-// Photos — replace SVGs with real JPGs/PNGs; keep same filenames or add more.
-// Vary portrait (3:4), landscape (4:3), and square to get nice masonry rhythm.
-import photo1 from "@/assets/images/photo-1.svg";
-import photo2 from "@/assets/images/photo-2.svg";
-import photo3 from "@/assets/images/photo-3.svg";
-import photo4 from "@/assets/images/photo-4.svg";
-import photo5 from "@/assets/images/photo-5.svg";
-import photo6 from "@/assets/images/photo-6.svg";
+// Photos — add/remove images from src/assets/images/ and update this list.
+import photoBossBaby        from "@/assets/images/boss-baby.jpeg";
+import photoCroatia         from "@/assets/images/croatia-maggie-dustin.jpeg";
+import photoEmilia          from "@/assets/images/emilia.jpeg";
+import photoHalloween       from "@/assets/images/halloween.jpeg";
+import photoMaggiePregnant  from "@/assets/images/maggie-pregnant.jpeg";
+import photoNoahDada        from "@/assets/images/noah-dada-working.jpeg";
+import photoNoah            from "@/assets/images/noah.jpeg";
+import photoYosemite        from "@/assets/images/yosemite.jpeg";
 
 const photos = [
-  { src: photo1, alt: "Family photo 1" },
-  { src: photo2, alt: "Family photo 2" },
-  { src: photo3, alt: "Family photo 3" },
-  { src: photo4, alt: "Family photo 4" },
-  { src: photo5, alt: "Family photo 5" },
-  { src: photo6, alt: "Family photo 6" },
+  { src: photoCroatia,        alt: "Maggie and Dustin in Croatia" },
+  { src: photoNoah,           alt: "Noah" },
+  { src: photoYosemite,       alt: "Yosemite" },
+  { src: photoEmilia,         alt: "Emilia" },
+  { src: photoNoahDada,       alt: "Noah and dad working" },
+  { src: photoBossBaby,       alt: "Boss baby" },
+  { src: photoHalloween,      alt: "Halloween" },
+  { src: photoMaggiePregnant, alt: "Maggie" },
 ];
 
 // Calculate ages
