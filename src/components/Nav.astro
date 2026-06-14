@@ -9,7 +9,7 @@ const currentPath = new URL(Astro.request.url).pathname;
 
 <header class="site-header">
   <nav class="nav container">
-    <a href="/" class="nav__logo">dustin &amp; maggie</a>
+    <a href="/" class="nav__logo">maggie &amp; dustin</a>
     <ul class="nav__links">
       {navLinks.map(({ href, label }) => (
         <li>
@@ -58,17 +58,25 @@ const currentPath = new URL(Astro.request.url).pathname;
   .nav__links {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.25rem;
     list-style: none;
   }
 
+  @media (min-width: 400px) {
+    .nav__links { gap: 2rem; }
+  }
+
   .nav__link {
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     font-weight: 500;
     color: var(--color-text-muted);
     text-decoration: none;
     transition: color 0.15s ease;
     letter-spacing: 0.01em;
+  }
+
+  @media (min-width: 400px) {
+    .nav__link { font-size: 0.9375rem; }
   }
 
   .nav__link:hover,

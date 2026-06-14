@@ -20,40 +20,60 @@ export default function Globe({ locations }: Props) {
     if (!containerRef.current) return;
 
     async function initGlobe() {
-      const GlobeModule = await import("globe.gl");
-      // globe.gl exports a factory function as default
+      const [GlobeModule, THREE, countries] = await Promise.all([
+        import("globe.gl"),
+        import("three"),
+        fetch("https://unpkg.com/world-atlas@2/countries-110m.json")
+          .then((r) => r.json())
+          .then(async (topo) => {
+            const { feature } = await import("topojson-client");
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            return (feature(topo, (topo as any).objects.countries) as any).features;
+          }),
+      ]);
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const GlobeGL = (GlobeModule as any).default ?? GlobeModule;
 
       const container = containerRef.current!;
-      const width = container.offsetWidth || 500;
-      const height = Math.min(width, 520);
+      const size = container.offsetWidth || 500;
 
-      // globe.gl is called as a factory function: GlobeGL()(element)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const globe = (GlobeGL as any)({ animateIn: true })(container);
 
+      // Warm cream sphere — no texture, just a clean matte surface
+      const globeMaterial = new THREE.MeshPhongMaterial({
+        color: new THREE.Color("#f0ebe4"),
+        shininess: 4,
+        specular: new THREE.Color("#e8e0d8"),
+      });
+
       globe
-        .width(width)
-        .height(height)
+        .width(size)
+        .height(size)
         .backgroundColor("rgba(0,0,0,0)")
-        .globeImageUrl(
-          "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-        )
-        .atmosphereColor("#e0d9ce")
+        .globeImageUrl("")
+        .globeMaterial(globeMaterial)
+        .showAtmosphere(true)
+        .atmosphereColor("#e8d5b0")
         .atmosphereAltitude(0.12)
-        .pointsData(locations)
-        .pointLat("lat")
-        .pointLng("lng")
-        .pointLabel("label")
-        .pointColor(() => "#d97706")
-        .pointAltitude(0.02)
-        .pointRadius(0.5);
+        // Country outlines — stroke only, no fill
+        .polygonsData(countries)
+        .polygonCapColor(() => "rgba(0,0,0,0)")
+        .polygonSideColor(() => "rgba(0,0,0,0)")
+        .polygonStrokeColor(() => "#b5a898")
+        .polygonAltitude(0.002)
+        // Animated pulse rings at visited locations
+        .ringsData(locations)
+        .ringLat("lat")
+        .ringLng("lng")
+        .ringLabel("label")
+        .ringColor(() => (t: number) => `rgba(217,119,6,${1 - t})`)
+        .ringMaxRadius(4)
+        .ringPropagationSpeed(1.2)
+        .ringRepeatPeriod(1800);
 
-      // Set initial camera position
-      globe.pointOfView({ lat: 20, lng: -100, altitude: 2.2 });
-
-      // Enable auto-rotation
+      globe.pointOfView({ lat: 20, lng: -40, altitude: 2.0 });
       globe.controls().autoRotate = true;
       globe.controls().autoRotateSpeed = 0.4;
       globe.controls().enableZoom = false;
@@ -64,21 +84,19 @@ export default function Globe({ locations }: Props) {
     initGlobe().catch(console.error);
 
     return () => {
-      // Clean up canvas on unmount
       const canvas = containerRef.current?.querySelector("canvas");
       if (canvas) canvas.remove();
       globeRef.current = null;
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Pause/resume rotation on hover
   useEffect(() => {
     if (!globeRef.current) return;
     try {
       globeRef.current.controls().autoRotate = !isHovered;
     } catch {
-      // ignore if controls not yet ready
+      // ignore
     }
   }, [isHovered]);
 
@@ -89,12 +107,10 @@ export default function Globe({ locations }: Props) {
       onMouseLeave={() => setIsHovered(false)}
       style={{
         width: "100%",
-        maxWidth: "600px",
+        maxWidth: "520px",
         margin: "0 auto",
         cursor: isHovered ? "grabbing" : "grab",
-        aspectRatio: "1",
-        borderRadius: "50%",
-        overflow: "hidden",
+        aspectRatio: "1 / 1",
       }}
       aria-label="Interactive globe showing visited locations"
     />

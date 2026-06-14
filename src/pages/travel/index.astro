@@ -61,11 +61,19 @@ const globeLocations = travelPosts
 
 <style>
   .page {
-    padding: var(--space-16) 0;
+    padding: var(--space-10) 0;
+  }
+
+  @media (min-width: 640px) {
+    .page { padding: var(--space-16) 0; }
   }
 
   .page-header {
-    margin-bottom: var(--space-12);
+    margin-bottom: var(--space-8);
+  }
+
+  @media (min-width: 640px) {
+    .page-header { margin-bottom: var(--space-12); }
   }
 
   .page-title {
@@ -83,9 +91,17 @@ const globeLocations = travelPosts
 
   .globe-wrapper {
     width: 100%;
-    max-width: 620px;
-    margin: 0 auto var(--space-16);
-    padding: 0 var(--space-6);
+    max-width: 340px;
+    margin: 0 auto var(--space-10);
+    padding: 0 var(--space-5);
+  }
+
+  @media (min-width: 480px) {
+    .globe-wrapper {
+      max-width: 520px;
+      margin-bottom: var(--space-16);
+      padding: 0 var(--space-6);
+    }
   }
 
   .posts-section {

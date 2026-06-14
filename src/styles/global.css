@@ -191,13 +191,20 @@ p {
   width: 100%;
   max-width: var(--max-width-wide);
   margin: 0 auto;
-  padding: 0 var(--space-6);
+  padding: 0 var(--space-5);
 }
 
 .container--narrow {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--space-6);
+  padding: 0 var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .container,
+  .container--narrow {
+    padding: 0 var(--space-6);
+  }
 }
 
 main {
