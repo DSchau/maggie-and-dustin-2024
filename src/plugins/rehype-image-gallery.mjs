@@ -35,11 +35,18 @@ export function rehypeImageGallery() {
         const child = node.children[i];
 
         if (isImgParagraph(child)) {
-          // Collect all consecutive image-only <p> nodes
+          // Collect all consecutive image-only <p> nodes, skipping whitespace text nodes
           const imgs = [];
-          while (i < node.children.length && isImgParagraph(node.children[i])) {
-            imgs.push(extractImg(node.children[i]));
-            i++;
+          while (i < node.children.length) {
+            const cur = node.children[i];
+            if (isImgParagraph(cur)) {
+              imgs.push(extractImg(cur));
+              i++;
+            } else if (isWhitespaceText(cur)) {
+              i++; // skip blank lines between images
+            } else {
+              break;
+            }
           }
 
           const count = imgs.length;
@@ -78,13 +85,33 @@ export function rehypeImageGallery() {
   };
 }
 
-/** Build a <figure class="image-gallery__item"> with optional <figcaption> */
+/**
+ * Build a <figure class="image-gallery__item"> containing a <button> trigger.
+ * The button holds the img + interactive attrs; figcaption sits outside it.
+ * This keeps figure/figcaption semantics valid and avoids tabindex on figure.
+ */
 function makeItem(img, idx, galleryId) {
   const caption = getCaption(img);
 
-  const children = [img];
+  // Remove alt from img — the button aria-label covers it
+  if (img.properties) img.properties.alt = "";
+
+  const btn = {
+    type: "element",
+    tagName: "button",
+    properties: {
+      className: ["image-gallery__btn"],
+      "data-index": String(idx),
+      "data-gallery": galleryId,
+      type: "button",
+      "aria-label": caption ? `View: ${caption}` : `View image ${idx + 1}`,
+    },
+    children: [img],
+  };
+
+  const figChildren = [btn];
   if (caption) {
-    children.push({
+    figChildren.push({
       type: "element",
       tagName: "figcaption",
       properties: { className: ["image-gallery__caption"] },
@@ -95,16 +122,8 @@ function makeItem(img, idx, galleryId) {
   return {
     type: "element",
     tagName: "figure",
-    properties: {
-      className: ["image-gallery__item"],
-      "data-index": String(idx),
-      "data-gallery": galleryId,
-      // Accessibility: make it keyboard-operable
-      tabIndex: "0",
-      role: "button",
-      "aria-label": caption ? `View: ${caption}` : `View image ${idx + 1}`,
-    },
-    children,
+    properties: { className: ["image-gallery__item"] },
+    children: figChildren,
   };
 }
 
@@ -133,4 +152,8 @@ function extractImg(pNode) {
   return pNode.children.find(
     (c) => c.type === "element" && c.tagName === "img"
   );
+}
+
+function isWhitespaceText(node) {
+  return node.type === "text" && !node.value.trim();
 }
