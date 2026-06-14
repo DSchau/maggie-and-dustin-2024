@@ -213,6 +213,111 @@ main {
 }
 
 /* =========================================
+   Image Gallery (from rehype-image-gallery plugin)
+   ========================================= */
+
+/* Bleed galleries outside the narrow prose column */
+.image-gallery {
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-8);
+}
+
+.image-gallery--grid,
+.image-gallery--pair {
+  /* Break out of the prose max-width and use the full page width */
+  width: min(100vw - 2rem, 960px);
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Single image: full prose width, centered */
+.image-gallery--single {
+  display: block;
+}
+
+.image-gallery--single img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  display: block;
+}
+
+.image-gallery--single figcaption {
+  margin-top: var(--space-2);
+}
+
+/* Two images side by side */
+.image-gallery--pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+/* 3+ images: CSS columns masonry */
+.image-gallery--grid {
+  columns: 2;
+  column-gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .image-gallery--grid {
+    columns: 3;
+    column-gap: 0.625rem;
+  }
+
+  .image-gallery--pair {
+    gap: 0.625rem;
+  }
+}
+
+/* Gallery item (figure element) */
+.image-gallery__item {
+  display: block;
+  break-inside: avoid;
+  margin-bottom: 0.5rem;
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: zoom-in;
+  text-align: left;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .image-gallery__item {
+    margin-bottom: 0.625rem;
+  }
+}
+
+.image-gallery__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.18s ease;
+}
+
+.image-gallery__item:hover img,
+.image-gallery__item:focus-visible img {
+  opacity: 0.88;
+}
+
+.image-gallery__item:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.image-gallery__caption {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  padding: var(--space-2) var(--space-3) var(--space-3);
+  line-height: 1.4;
+  background: var(--color-bg);
+}
+
+/* =========================================
    Tags
    ========================================= */
 .tag {
