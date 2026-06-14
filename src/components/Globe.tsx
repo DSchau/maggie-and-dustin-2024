@@ -11,7 +11,7 @@ interface Props {
 }
 
 const SPHERE_R   = 5;
-const DOT_COUNT  = 50000;
+const DOT_COUNT  = 20000;
 // Coarse grid for land lookup — 2° resolution, built with geoContains
 const GRID_W = 180; // 2° per cell
 const GRID_H = 90;
@@ -235,9 +235,13 @@ export default function Globe({ locations }: Props) {
       };
     }
 
-    init().catch(console.error);
+    // Defer past first paint so the page doesn't freeze on load
+    const timerId = setTimeout(() => {
+      init().catch(console.error);
+    }, 0);
 
     return () => {
+      clearTimeout(timerId);
       mountedRef.current = false;
       disposeRef.current?.();
       disposeRef.current = undefined;

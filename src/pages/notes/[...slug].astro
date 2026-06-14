@@ -21,7 +21,12 @@ const formattedDate = post.data.date.toLocaleDateString("en-US", {
 });
 ---
 
-<Layout title={post.data.title} description={post.data.excerpt}>
+<Layout
+  title={post.data.title}
+  description={post.data.excerpt}
+  type="article"
+  publishedAt={post.data.date}
+>
   <article class="post-page">
     <div class="container--narrow">
       <header class="post-header">

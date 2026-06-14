@@ -35,7 +35,7 @@ const globeLocations = travelPosts
     <!-- Globe -->
     {globeLocations.length > 0 && (
       <div class="globe-wrapper">
-        <Globe locations={globeLocations} client:only="react" />
+        <Globe locations={globeLocations} client:visible />
       </div>
     )}
 

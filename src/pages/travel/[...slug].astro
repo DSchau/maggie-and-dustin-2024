@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
+import ImageLightbox from "@/components/ImageLightbox";
 
 export async function getStaticPaths() {
   const travelPosts = await getCollection("posts", ({ data }) => data.category === "travel");
@@ -20,7 +21,12 @@ const formattedDate = post.data.date.toLocaleDateString("en-US", {
 });
 ---
 
-<Layout title={post.data.title} description={post.data.excerpt}>
+<Layout
+  title={post.data.title}
+  description={post.data.excerpt}
+  type="article"
+  publishedAt={post.data.date}
+>
   <article class="post-page">
     <div class="container--narrow">
       <header class="post-header">
@@ -56,6 +62,7 @@ const formattedDate = post.data.date.toLocaleDateString("en-US", {
       </div>
     </div>
   </article>
+  <ImageLightbox client:load />
 </Layout>
 
 <style>
