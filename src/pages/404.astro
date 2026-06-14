@@ -1,20 +1,39 @@
 ---
-import Layout from '@/layouts/Layout.astro'
+import Layout from "@/layouts/Layout.astro";
 ---
-<style>
-  .container {
-    margin: 0 auto;
-    padding: 0 var(--padding-lg);
 
-    max-width: min(65ch, 100%);
-  }
-
-  h1 {
-  }
-</style>
-<Layout title="404: Not Found" showCopy={false}>
-  <div class="container">
-    <h2>⚠️ Oh no, a 404!</h2>
-    <p>Couldn't find the page specified. Perhaps try the <a href="/">Home page</a> or <a href="/posts">Blog posts</a>?</p>
+<Layout title="Page Not Found">
+  <div class="not-found">
+    <div class="container--narrow">
+      <h1 class="not-found__heading">404</h1>
+      <p class="not-found__message">
+        We couldn't find that page. Maybe try the{" "}
+        <a href="/">home page</a> or browse our{" "}
+        <a href="/notes">notes</a> and{" "}
+        <a href="/travel">travel posts</a>.
+      </p>
+    </div>
   </div>
 </Layout>
+
+<style>
+  .not-found {
+    padding: var(--space-24) 0;
+    text-align: center;
+  }
+
+  .not-found__heading {
+    font-family: var(--font-serif);
+    font-size: 6rem;
+    font-weight: 600;
+    color: var(--color-border);
+    line-height: 1;
+    margin-bottom: var(--space-6);
+  }
+
+  .not-found__message {
+    font-size: 1.0625rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+</style>

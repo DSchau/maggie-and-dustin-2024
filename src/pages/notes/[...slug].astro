@@ -3,8 +3,8 @@ import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const travelPosts = await getCollection("posts", ({ data }) => data.category === "travel");
-  return travelPosts.map((post) => ({
+  const notes = await getCollection("posts", ({ data }) => data.category === "note");
+  return notes.map((post) => ({
     params: { slug: post.slug },
     props: { post },
   }));
@@ -24,21 +24,10 @@ const formattedDate = post.data.date.toLocaleDateString("en-US", {
   <article class="post-page">
     <div class="container--narrow">
       <header class="post-header">
-        <a href="/travel" class="back-link">&larr; Travel</a>
-        <div class="post-meta">
-          <time datetime={post.data.date.toISOString()} class="post-date">
-            {formattedDate}
-          </time>
-          {post.data.location && (
-            <span class="post-location">
-              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
-              {post.data.location}
-            </span>
-          )}
-        </div>
+        <a href="/notes" class="back-link">&larr; Notes</a>
+        <time datetime={post.data.date.toISOString()} class="post-date">
+          {formattedDate}
+        </time>
         <h1 class="post-title">{post.data.title}</h1>
         {post.data.excerpt && (
           <p class="post-excerpt">{post.data.excerpt}</p>
@@ -83,25 +72,12 @@ const formattedDate = post.data.date.toLocaleDateString("en-US", {
     border-bottom: 1px solid var(--color-border);
   }
 
-  .post-meta {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-    margin-bottom: var(--space-4);
-  }
-
   .post-date {
+    display: block;
     font-size: 0.8125rem;
     color: var(--color-text-muted);
     letter-spacing: 0.02em;
-  }
-
-  .post-location {
-    display: flex;
-    align-items: center;
-    gap: var(--space-1);
-    font-size: 0.8125rem;
-    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
   }
 
   .post-title {

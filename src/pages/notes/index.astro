@@ -1,0 +1,68 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import PostCard from "@/components/PostCard.astro";
+
+const notes = await getCollection("posts", ({ data }) => data.category === "note");
+notes.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout
+  title="Notes"
+  description="Thoughts on family life, parenting, and everyday moments from Dustin & Maggie."
+>
+  <div class="page">
+    <div class="container--narrow">
+      <header class="page-header">
+        <h1 class="page-title">Notes</h1>
+        <p class="page-description">
+          Writing about family life, parenting, and the small moments worth
+          remembering.
+        </p>
+      </header>
+      <div class="posts">
+        {notes.map((post) => (
+          <PostCard
+            title={post.data.title}
+            date={post.data.date}
+            excerpt={post.data.excerpt}
+            tags={post.data.tags}
+            slug={post.slug}
+            category={post.data.category}
+          />
+        ))}
+        {notes.length === 0 && (
+          <p class="empty">No notes yet — check back soon.</p>
+        )}
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page {
+    padding: var(--space-16) 0;
+  }
+
+  .page-header {
+    margin-bottom: var(--space-12);
+  }
+
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .page-description {
+    font-size: 1.0625rem;
+    color: var(--color-text-muted);
+    max-width: 480px;
+  }
+
+  .empty {
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+</style>

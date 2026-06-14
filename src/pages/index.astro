@@ -1,89 +1,249 @@
 ---
 import { getCollection } from "astro:content";
-import { Image } from '@unpic/astro';
-
 import Layout from "@/layouts/Layout.astro";
+import PostCard from "@/components/PostCard.astro";
 
-import { Collection } from '@/components/collection/collection.tsx';
-import { Project } from '@/components/project/project.tsx';
-import { ContactForm } from '@/components/contact-form/contact-form.tsx'
+// Calculate ages
+function getAge(birthdate: Date): number {
+  const today = new Date();
+  let age = today.getFullYear() - birthdate.getFullYear();
+  const monthDiff = today.getMonth() - birthdate.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdate.getDate())) {
+    age--;
+  }
+  return age;
+}
 
+const noahBirthdate = new Date("2023-02-10");
+const emiliaBirthdate = new Date("2025-02-17");
+const noahAge = getAge(noahBirthdate);
+const emiliaAge = getAge(emiliaBirthdate);
 
-const POST_LIMIT = 3
+// Get recent notes
+const allPosts = await getCollection("posts");
+const recentNotes = allPosts
+  .filter((p) => p.data.category === "note")
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 
-const trips = await getCollection('trips', ({ data }) => {
-	const canShow = import.meta.env.PROD ? data.draft !== true : true;
-	return canShow && data.featured
-})
-	.then(all => {
-		return all
-			.sort((a, b) => {
-				return new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-			})
-			.slice(0, POST_LIMIT)
-	})
+const recentTravel = allPosts
+  .filter((p) => p.data.category === "travel")
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 ---
-<style>
-	h3 {
-		text-align: center;
-		padding: var(--padding-md) 0;
 
-		margin: var(--padding-s) auto;
-		max-width: var(--content-width);
-		border-top: 1px solid var(--border-color);
-	}
+<Layout title="" description="Dustin & Maggie — a family living and exploring from San Francisco, CA.">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container--narrow">
+      <h1 class="hero__headline">A family in San Francisco</h1>
+      <p class="hero__sub">
+        We're Dustin &amp; Maggie — writing about everyday life, our kids, and
+        the places we go. This is our little corner of the internet.
+      </p>
+    </div>
+  </section>
 
-	section {
-		padding: var(--padding-lg) 0;
-	}
+  <!-- Family bios -->
+  <section class="family">
+    <div class="container--narrow">
+      <h2 class="section-title">the family</h2>
+      <div class="family__grid">
+        <div class="family__member">
+          <div class="family__initial">D</div>
+          <div class="family__info">
+            <h3 class="family__name">Dustin</h3>
+            <p class="family__bio">
+              Product and engineering leader. Loves coffee, building things, and
+              getting outdoors whenever San Francisco cooperates.
+            </p>
+          </div>
+        </div>
+        <div class="family__member">
+          <div class="family__initial">M</div>
+          <div class="family__info">
+            <h3 class="family__name">Maggie</h3>
+            <p class="family__bio">
+              Creative, curious, and always finding the best restaurant in any
+              city we visit. The planner behind our adventures.
+            </p>
+          </div>
+        </div>
+        <div class="family__member">
+          <div class="family__initial">N</div>
+          <div class="family__info">
+            <h3 class="family__name">Noah &mdash; age {noahAge}</h3>
+            <p class="family__bio">
+              Born February 2023. Strong opinions about dinosaurs, trucks, and
+              which parent is doing it wrong at any given moment.
+            </p>
+          </div>
+        </div>
+        <div class="family__member">
+          <div class="family__initial">E</div>
+          <div class="family__info">
+            <h3 class="family__name">Emilia &mdash; age {emiliaAge}</h3>
+            <p class="family__bio">
+              Born February 2025. Watching the world with wide eyes and her
+              brother's chaos with what appears to be great interest.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	section > p {
-		margin: 0 auto;
-		width: var(--content-width);
+  <!-- Recent Notes -->
+  {recentNotes.length > 0 && (
+    <section class="recent-section">
+      <div class="container--narrow">
+        <div class="section-header">
+          <h2 class="section-title">recent notes</h2>
+          <a href="/notes" class="section-link">all notes &rarr;</a>
+        </div>
+        {recentNotes.map((post) => (
+          <PostCard
+            title={post.data.title}
+            date={post.data.date}
+            excerpt={post.data.excerpt}
+            tags={post.data.tags}
+            slug={post.slug}
+            category={post.data.category}
+          />
+        ))}
+      </div>
+    </section>
+  )}
 
-		padding: var(--padding-md) var(--padding-lg);
-	}
-
-	.images {
-		display: grid;
-		grid-template-columns: 1fr;
-	}
-
-	.images > .image {
-		padding: var(--padding-s);
-	}
-
-	.images img {
-		max-height: 450px;
-		height: 100%;
-		border-radius: var(--padding-lg);
-	}
-
-	@media only screen and (min-width: 768px) {
-		.images {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
-</style>
-
-<Layout title="Product & Engineering Leader">
-	<section>
-		<div class="images">
-			<div class="image"><Image src="https://dschau-website.imgix.net/noah-working.jpeg" alt="My son Noah and I working in my office" layout="fullWidth" height={450} background="#000" priority={true} /></div>
-			<div class="image"><Image src="https://dschau-website.imgix.net/maggie.jpeg" alt="My wife Maggie and I at Yosemite" layout="fullWidth" height={450} background="auto" priority={true} /></div>
-			<div class="image"><Image src="https://dschau-website.imgix.net/noah.jpeg" alt="My wife Maggie using her iPhone with Noah" layout="fullWidth" height={450} background="auto" /></div>
-			<div class="image"><Image src="https://dschau-website.imgix.net/gatsby.jpeg" alt="My time at Gatsby" layout="fullWidth" height={450} background="auto"/></div>
-		</div>
-	</section>
-	<section>
-		<h3>recent trips</h3>
-		<p>I try to blog about topics that interest me. Maybe they interest you! Some recent ones are below.</p>
-		<Collection items={trips} />
-	</section>
-	<section>
-		<h3>contact me</h3>
-		<p>If you'd like to chat, please do reach out. You can <a href="mailto:me@dustinschau.com">e-mail me</a> or you can use the form below.</p>
-		<ContactForm client:load />
-	</section>
+  <!-- Recent Travel -->
+  {recentTravel.length > 0 && (
+    <section class="recent-section">
+      <div class="container--narrow">
+        <div class="section-header">
+          <h2 class="section-title">recent travel</h2>
+          <a href="/travel" class="section-link">all travel &rarr;</a>
+        </div>
+        {recentTravel.map((post) => (
+          <PostCard
+            title={post.data.title}
+            date={post.data.date}
+            excerpt={post.data.excerpt}
+            tags={post.data.tags}
+            slug={post.slug}
+            category={post.data.category}
+            location={post.data.location}
+          />
+        ))}
+      </div>
+    </section>
+  )}
 </Layout>
+
+<style>
+  /* Hero */
+  .hero {
+    padding: var(--space-20) 0 var(--space-16);
+  }
+
+  .hero__headline {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-6);
+    color: var(--color-text);
+  }
+
+  .hero__sub {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  /* Family section */
+  .family {
+    padding: var(--space-16) 0;
+    background: white;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .family__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    margin-top: var(--space-8);
+  }
+
+  @media (min-width: 600px) {
+    .family__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .family__member {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .family__initial {
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: var(--color-accent-light);
+    color: var(--color-accent);
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .family__name {
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+  }
+
+  .family__bio {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* Section common */
+  .recent-section {
+    padding: var(--space-16) 0;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--space-8);
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .section-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .section-link:hover {
+    color: var(--color-text);
+  }
+</style>
