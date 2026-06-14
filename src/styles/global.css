@@ -17,6 +17,16 @@
   display: none;
 }
 
+/* Kill the ugly zoom-in/zoom-out cursor inside the lightbox */
+.pswp__img {
+  cursor: default !important;
+}
+
+/* Hide the zoom toggle button — we don't use pinch-to-zoom */
+.pswp__button--zoom {
+  display: none !important;
+}
+
 /* Caption */
 .pswp-caption {
   position: absolute;
