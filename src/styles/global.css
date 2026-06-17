@@ -297,15 +297,16 @@ main {
   gap: 3px;
 }
 
-/* 3+ images: CSS columns masonry */
+/* 3+ images: CSS grid (row flow, left-to-right) so order matches the markdown */
 .image-gallery--grid {
-  columns: 2;
-  column-gap: 3px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px;
 }
 
 @media (min-width: 640px) {
   .image-gallery--grid {
-    columns: 3;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -335,6 +336,16 @@ main {
   height: auto;
   display: block;
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Uniform tiles in the grid variant so rows align left-to-right */
+.image-gallery--grid .image-gallery__btn img {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.image-gallery--grid .image-gallery__item {
+  margin-bottom: 0;
 }
 
 .image-gallery__btn:hover img,

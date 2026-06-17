@@ -12,15 +12,21 @@ It was the best day ever, and every day after has only generally trended upwards
 
 ## Maggie
 
+![Maggie, my wife](./images/maggie.jpeg)
+
 Maggie has been my rock over the past five years. We've had our ups and downs (life as parents was a real adjustment and challenged us!) but I believe our partnership has never been stronger. She's become such a confident and assertive professional and a truly amazing mom to our two kids. 
 
 Between all of that, she still manages to find time to make everyone in our lives -- including me of course! -- feel special, appreciated, and valued. I don't know how she does it at all, but that's just Maggie.
 
-### Noah
+## Noah
+
+![Noah, my son](./images/noah.jpeg)
 
 Noah is who made us parents and has caused so much joy in our lives. He's our little wild man, but he's a bundle of fun and energy and it's been so rewarding seeing his personality bloom and seeing him become such a great big brother. The biggest change this year for him was going to day care and it's helped quite a bit for him to play with other kids and be socialized. He's still a mildly feral animal but now a civilized one.
 
-### Emilia
+## Emilia
+
+![Emilia, my daughter](./images/emilia.jpeg)
 
 Emilia is our sweet, chill baby angel. She's so stoic, observant, and mild mannered. She has been showing a bit of a wild side with Noah though, letting him know when she is displeased loudly and proudly! She's still with our nanny Roverssy and gets to spend just about every day going to the park and hanging out with other kids. The good life!
 
@@ -29,8 +35,6 @@ Emilia is our sweet, chill baby angel. She's so stoic, observant, and mild manne
 To celebrate our five year anniversary, we took our first night ever away from the kids and went to a nice hotel in Sonoma and treated ourselves to some alone time. The first night we went to an amazing restaurant Enclos (more below!) and then the second day we explored Sonoma square, did a wine tasting at a great winery we recently joined called Blue Farms, and then treated ourselves to a spa day at the hotel. 
 
 We came back around 800PM that Friday evening just after the kids went down to still have a little time to unwind. I can't imagine a more perfect day, weekend, and time together to celebrate five of the best years of our lives.
-
-<!-- Write about the trip here — where you stayed, what you ate, what it felt like to have a few days away. -->
 
 ---
 
