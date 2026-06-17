@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Allow: /api/og/*
+Allow: /api/og.png
 
-Sitemap: https://www.dustinschau.com/sitemap-index.xml
+Sitemap: https://maggieanddustin.com/sitemap-index.xml

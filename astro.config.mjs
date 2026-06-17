@@ -25,7 +25,7 @@ function arrayBufferPlugin() {
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  site: 'https://www.maggieanddustin.com',
+  site: 'https://maggieanddustin.com',
   integrations: [react(), sitemap()],
   adapter: cloudflare(),
   markdown: {
