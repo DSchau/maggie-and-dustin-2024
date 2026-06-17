@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # Claude Code worktrees (never commit these)
 .claude/worktrees/
+
+# travel pipeline intermediates
+scripts/travel/data/
+
+# python cache
+__pycache__

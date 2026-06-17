@@ -1,0 +1,9 @@
+{
+  "_comment": "Copy this to data/location.json (git-ignored) and fill in your own values.",
+  "home": [0.0, 0.0],
+  "home_country_code": "US",
+  "home_radius_km": 150,
+  "exclude_zones": [
+    [0.0, 0.0, 50]
+  ]
+}
