@@ -2,7 +2,7 @@
 title: "Five Years"
 date: 2026-06-12
 category: note
-excerpt: "Five years married. A lot has changed."
+excerpt: "Five years married. The best of times. Full stop."
 tags: [anniversary, family]
 ---
 
