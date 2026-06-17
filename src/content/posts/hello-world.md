@@ -14,6 +14,4 @@ San Francisco has been home for a few years now, and we've grown to love its par
 
 Noah arrived in February 2023 and turned our world upside down in the best possible way. Emilia came along in February 2025, and now our apartment feels wonderfully chaotic and full.
 
-We're not going for perfection here — just presence. A record of the small and the significant, written for ourselves and for anyone who cares to read along.
-
 Thanks for stopping by.
