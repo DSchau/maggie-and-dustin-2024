@@ -338,12 +338,9 @@ main {
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Uniform tiles in the grid variant so rows align left-to-right */
-.image-gallery--grid .image-gallery__btn img {
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-}
-
+/* Grid items: drop the masonry bottom margin so the grid `gap` controls spacing.
+   Thumbnails keep their natural aspect ratio (height: auto) so each one matches
+   its full-size lightbox image exactly — that's what makes the zoom seamless. */
 .image-gallery--grid .image-gallery__item {
   margin-bottom: 0;
 }

@@ -62,7 +62,7 @@ I think what we both enjoyed most wasn't just that the food was stellar -- that 
 
 ![quail](./images/enclos/F6CA6BD1-3AAD-4435-89E5-14CDBFF3425C_4_5005_c.jpeg)
 
-![quail stock](./images/enclos/FA0AE276-C092-4042-93BE-485B7E0C653C_4_5005_c.jpeg)
+![quail stock (a bonus surprise!)](./images/enclos/FA0AE276-C092-4042-93BE-485B7E0C653C_4_5005_c.jpeg)
 
 ![lamb, three ways](./images/enclos/FB9BB7ED-F487-42A6-A706-CC199BBB103C_4_5005_c.jpeg)
 
@@ -76,7 +76,7 @@ I think what we both enjoyed most wasn't just that the food was stellar -- that 
 
 ![dark chocolate and trio of desserts](./images/enclos/F2A489DA-E83C-4615-ABB6-63C62E988525_4_5005_c.jpeg)
 
-![honey ice cream](./images/enclos/C0C1AB5A-D1B3-4359-B370-6E453E134CDA_4_5005_c.jpeg)
+![honey ice cream (a bonus surprise!)](./images/enclos/C0C1AB5A-D1B3-4359-B370-6E453E134CDA_4_5005_c.jpeg)
 
 ### To the next five
 
