@@ -14,6 +14,7 @@ const globeLocations = travelPosts
     lat: p.data.coordinates![0],
     lng: p.data.coordinates![1],
     label: p.data.location ?? p.data.title,
+    href: `/travel/${p.slug}`,
   }));
 ---
 
